@@ -1,0 +1,9 @@
+.users-container {
+  width: 100%;
+}
+
+.btn-add {
+  padding: 5px 20px;
+  height: auto;
+  margin-left: 2px;
+}

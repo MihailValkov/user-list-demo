@@ -1,0 +1,9 @@
+.form {
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  left: calc(50% - 2rem);
+  z-index: 20;
+}
