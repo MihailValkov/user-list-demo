@@ -129,7 +129,7 @@ Content:
 
 ## Update user by userId
 
-Update an existing user by sending a `PATCH` request to `/users:/userId` with properties `firstName`, `lastName`, `email`, `imageUrl`, `phoneNumber` and `address`. The service will respond with an object, containing newly updated user.
+Update an existing user by sending a `PUT` request to `/users:/userId` with properties `firstName`, `lastName`, `email`, `imageUrl`, `phoneNumber` and `address`. The service will respond with an object, containing newly updated user.
 
 ### Body
 
