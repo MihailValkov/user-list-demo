@@ -29,8 +29,8 @@ Clone this repository and install dependencies
 
 
 ## Application Overview
-The application allows visitors to browse through the user's table, create a new user, update the users, and delete the users.
-The application provides searching, pagination, and sorting of the users.
+The application allows visitors to browse through the user's table. Each table row provides functionality to view the detailed information about the current user, edit user information, and delete the user.
+The application provides functionality to create a new user, searching for a specific user by providing the criterion and searching value, pagination, and sorting of the users in ascending or descending order.
 
 
 
