@@ -28,9 +28,7 @@ const DetailUser: FC<{
   useEffect(() => {
     dispatch(getUserAction(userId));
 
-    return () => {
-      dispatch(clearUser());
-    };
+    return () => { dispatch(clearUser()); };
   }, [dispatch, userId]);
 
   return (

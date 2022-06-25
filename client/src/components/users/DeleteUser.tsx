@@ -15,12 +15,9 @@ const DeleteUser: FC<{
   isLoading: boolean;
   errorMessage: string;
 }> = ({ onClose, onConfirm, clearErrorMessage, isLoading, errorMessage }) => {
+  
   useEffect(() => {
-    return () => {
-      if (errorMessage) {
-        clearErrorMessage();
-      }
-    };
+    return () => { errorMessage &&  clearErrorMessage(); };
   }, [errorMessage, clearErrorMessage]);
 
   return (

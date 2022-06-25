@@ -36,8 +36,7 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
   const onShowDeleteModalHandler = useCallback(() => setShowDeleteModal((prev) => !prev), []);
   const onShowDetailModalHandler = useCallback(() => setShowDetailModal((prev) => !prev), []);
 
-  const deleteUserHandler = useCallback(
-    (userId: string) => {
+  const deleteUserHandler = useCallback((userId: string) => {
       dispatch(deleteUserAction(userId, onShowDeleteModalHandler));
     },
     [dispatch, onShowDeleteModalHandler]
@@ -88,7 +87,11 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
           currentUser.hasOwnProperty(key) ? (
             <td key={`${key}` + i}>
               {key === 'imageUrl' ? (
-                <img src={currentUser[key]} alt={currentUser.firstName + '=avatar'} className={styles.image} />
+                <img
+                  src={currentUser[key]}
+                  alt={currentUser.firstName + '=avatar'}
+                  className={styles.image}
+                />
               ) : key === 'createdAt' ? (
                 transformedDate
               ) : (

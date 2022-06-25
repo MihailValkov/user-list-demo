@@ -13,10 +13,7 @@ const SearchBar: FC<{
   criterion: { value: string; text: string }[];
 }> = ({ title, icon, criterion }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [state, setState] = useState({
-    search: '',
-    criteria: '',
-  });
+  const [state, setState] = useState({ search: '', criteria: '' });
 
   const changeHandler = useCallback(
     (
@@ -28,9 +25,7 @@ const SearchBar: FC<{
     []
   );
 
-  const onClear = useCallback(() => {
-    setState((state) => ({ ...state, search: '' }));
-  }, []);
+  const onClear = useCallback(() => setState((state) => ({ ...state, search: '' })), []);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -52,7 +47,11 @@ const SearchBar: FC<{
       <div className={styles['search-input']}>
         <input
           type='text'
-          placeholder={`Search ${title} by ${state.criteria}`}
+          placeholder={
+            state.criteria
+              ? `Search ${title} by ${state.criteria}`
+              : 'Please, select the search criteria'
+          }
           name='search'
           onChange={changeHandler.bind(null, 'search')}
           value={state.search}
@@ -69,7 +68,7 @@ const SearchBar: FC<{
           icon={faSearch}
           classes={styles.btn}
           disabled={state.criteria === ''}
-          title={state.criteria === '' ? 'Please select search criteria' : ''}
+          title={state.criteria === '' ? 'Please, select the search criteria' : ''}
         />
       </div>
 
@@ -81,7 +80,7 @@ const SearchBar: FC<{
           value={state.criteria}
           onChange={changeHandler.bind(null, 'criteria')}
         >
-          <option value={''}>Select criteria</option>
+          <option value={''}>Not selected</option>
           {criterion.map((c) => (
             <option key={c.value} value={c.value}>
               {c.text}

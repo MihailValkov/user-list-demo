@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import styles from './Modal.module.css';
 
+const portalElement = document.getElementById('overlays') as HTMLDivElement;
+
 export const Backdrop: FC<{ onClose: () => void }> = ({ onClose }) => {
   return <div className={styles.backdrop} onClick={onClose} />;
 };
@@ -10,8 +12,6 @@ export const Backdrop: FC<{ onClose: () => void }> = ({ onClose }) => {
 const ModalOverlay: FC<{ children: ReactNode; classes?: string }> = ({ children, classes }) => {
   return <div className={`${styles.modal} ${classes}`}>{children}</div>;
 };
-
-const portalElement = document.getElementById('overlays') as HTMLDivElement;
 
 const Modal: FC<{ children: ReactNode; onClose: () => void; classes?: string }> = ({
   children,

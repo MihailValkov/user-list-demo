@@ -41,14 +41,8 @@ const AddOrUpdateUser: FC<{
   const isLoading = useSelector(selectors.selectCurrentUserIsLoading);
 
   useEffect(() => {
-    if (userId) {
-      dispatch(getUserAction(userId));
-    }
-    return () => {
-      if (userId) {
-        dispatch(clearUser());
-      }
-    };
+    if (userId) { dispatch(getUserAction(userId)); }
+    return () => { userId && dispatch(clearUser()); };
   }, [dispatch, userId]);
 
   const {
@@ -165,9 +159,8 @@ const AddOrUpdateUser: FC<{
 
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!formIsValid) {
-      return;
-    }
+    if (!formIsValid) { return; }
+    
     const userData: ICreateOrUpdateUser = {
       firstName: firstNameValue,
       lastName: lastNameValue,
@@ -359,7 +352,7 @@ const AddOrUpdateUser: FC<{
         </FormRow>
         <FormActions responseError={errorMessage || ''} position={'right'}>
           <Button
-            disabled={(!formIsValid || !formIsTouched) ? true : false}
+            disabled={!formIsValid || !formIsTouched ? true : false}
             type='submit'
             action={'save'}
           >

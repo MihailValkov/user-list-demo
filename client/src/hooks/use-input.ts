@@ -18,14 +18,11 @@ const useInput = (validateValue: IValidationFn, defaultValue?: string | undefine
         });
       }
     }, 300);
-    return () => clearTimeout(timer);
+
+    return () => { clearTimeout(timer); }
   }, [validateValue, state.touched, state.value]);
 
-  useEffect(() => {
-    if (defaultValue) {
-      dispatch({ type: 'set_value', value: defaultValue });
-    }
-  }, [defaultValue]);
+  useEffect(() => { defaultValue && dispatch({ type: 'set_value', value: defaultValue }); }, [defaultValue]);
 
   const changeHandler = useCallback(
     ({ currentTarget: { value } }: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -33,12 +30,10 @@ const useInput = (validateValue: IValidationFn, defaultValue?: string | undefine
     },
     []
   );
-  const blurHandler = useCallback(() => {
-    dispatch({ type: 'blur' });
-  }, []);
-  const resetHandler = useCallback(() => {
-    dispatch({ type: 'reset' });
-  }, []);
+
+  const blurHandler = useCallback(() => { dispatch({ type: 'blur' }); }, []);
+
+  const resetHandler = useCallback(() => { dispatch({ type: 'reset' }); }, []);
 
   return {
     value: state.value,
@@ -51,4 +46,5 @@ const useInput = (validateValue: IValidationFn, defaultValue?: string | undefine
     touched: state.touched,
   };
 };
+
 export default useInput;
