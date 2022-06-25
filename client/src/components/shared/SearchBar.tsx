@@ -65,7 +65,12 @@ const SearchBar: FC<{
           />
         )}
 
-        <Button icon={faSearch} classes={styles.btn} />
+        <Button
+          icon={faSearch}
+          classes={styles.btn}
+          disabled={state.criteria === ''}
+          title={state.criteria === '' ? 'Please select search criteria' : ''}
+        />
       </div>
 
       <div className={styles['filter']}>
