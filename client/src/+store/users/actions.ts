@@ -60,7 +60,7 @@ export const updateUserAction =
     dispatch(userIsLoading({ isLoading: true }));
     dispatch(userErrorMessage({ message: null }));
     try {
-      const { user } = await http.patch<{ user: IUserBase }>(`users/${userId}`, userData);
+      const { user } = await http.put<{ user: IUserBase }>(`users/${userId}`, userData);
       dispatch(updateUser({ user }));
       onClose();
     } catch (error: any) {
