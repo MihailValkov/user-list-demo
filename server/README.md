@@ -45,7 +45,7 @@ The documentation below assumes you are pre-pending the Base URL to the endpoint
 # Endpoints: Users
 
 - `/users` -- create new user / get all users;
-- `/users/:userId` -- get / update / delete user by provided id;
+- `/users/{userId}` -- get / update / delete user by provided id;
 
 ## Create a new user
 
@@ -98,7 +98,7 @@ Send a `GET` request to `/users?page=1&limit=5&search=Chris&criteria=firstName&s
 
 ## Get user by userId
 
-Send a `GET` request to `/users/:userId`. The service will respond with an user object.
+Send a `GET` request to `/users/{userId}`. The service will respond with an user object.
 
 ### Success Response:
 
@@ -129,7 +129,7 @@ Content:
 
 ## Update user by userId
 
-Update an existing user by sending a `PUT` request to `/users:/userId` with properties `firstName`, `lastName`, `email`, `imageUrl`, `phoneNumber` and `address`. The service will respond with an object, containing newly updated user.
+Update an existing user by sending a `PUT` request to `/users/{userId}` with properties `firstName`, `lastName`, `email`, `imageUrl`, `phoneNumber` and `address`. The service will respond with an object, containing newly updated user.
 
 ### Body
 
@@ -172,7 +172,7 @@ Content:
 
 ## Delete user by userId
 
-Delete an existing user by sending a `DELETE` request to `/users:/userId`. The service will respond with an object, containing userId of the deleted user.
+Delete an existing user by sending a `DELETE` request to `/users/{userId}`. The service will respond with an object, containing userId of the deleted user.
 
 ### Success Response:
 
