@@ -25,7 +25,7 @@ Clone this repository and install dependencies
 > npm start ( to start the REST API )
 > go to http://localhost:3000
 ```
-**NOTE: Don't forget to read the documentation about the CUSTOM API, you can find it [here](https://github.com/MihailValkov/user-list-demo/blob/main/server/README.md).**
+**NOTE: Don't forget to read the documentation about the REST API, you can find it [here](https://github.com/MihailValkov/user-list-demo/blob/main/server/README.md).**
 
 
 ## Application Overview
