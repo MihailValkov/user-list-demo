@@ -2,14 +2,14 @@
 
 ## 🛠 Libraries and tools used
 - [React](https://reactjs.org/)
-- [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [Font Awesome](https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react)
-- [TypeScript](https://www.typescriptlang.org/)
 - [React Router v6](https://reactrouter.com/)
 - [Redux](https://redux.js.org/)
 - [React Redux](https://react-redux.js.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [Font Awesome](https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react)
 - [REST API](https://github.com/MihailValkov/user-list-demo/blob/main/server/README.md)
 
 ## Getting Started
