@@ -44,7 +44,7 @@ const SearchBar: FC<{
         <FontAwesomeIcon icon={icon} className={styles.icon} />
         <span>{title}</span>
       </h2>
-      <div className={styles['search-input']}>
+      <div className={styles['search-input-container']}>
         <input
           type='text'
           placeholder={

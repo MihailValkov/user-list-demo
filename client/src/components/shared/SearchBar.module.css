@@ -17,10 +17,11 @@
   margin-left: 10px;
 }
 
-.search-input {
+.search-input-container {
   display: flex;
   justify-content: center;
   width: 50%;
+  position: relative;
 }
 .search-form input,
 .search-form select {
@@ -80,6 +81,10 @@
 
 .search-form .close-btn {
   background-color: #943232;
+  position: absolute;
+  right: 53px;
+  top: 0px;
+  bottom: 0px;
 }
 
 .filter {
