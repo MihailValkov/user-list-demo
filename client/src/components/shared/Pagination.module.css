@@ -47,3 +47,13 @@
 .actions {
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .pagination {
+    padding: 0px;
+    margin: auto;
+  }
+  .limits > span {
+    display: none;
+  }
+}

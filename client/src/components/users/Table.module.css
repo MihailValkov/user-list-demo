@@ -5,6 +5,7 @@
   background: white;
   overflow: auto;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .table {
@@ -17,6 +18,10 @@
   top: 0;
   background: white;
   z-index: 1;
+}
+.table thead tr {
+  background-color: #2a87a5;
+  color: white;
 }
 .table th {
   padding-top: 5px;
@@ -114,7 +119,7 @@
 }
 
 @media (max-width: 930px) {
-  table {
+  .table {
     width: 800px;
   }
   .table-wrapper::-webkit-scrollbar {

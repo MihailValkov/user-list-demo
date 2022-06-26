@@ -38,7 +38,7 @@
 .search-form input {
   background: white;
   border-right: none;
-  width: 90%;
+  width: 100%;
   padding: 0px 10px;
   color: black;
 }
@@ -81,10 +81,6 @@
 
 .search-form .close-btn {
   background-color: #943232;
-  position: absolute;
-  right: 53px;
-  top: 0px;
-  bottom: 0px;
 }
 
 .filter {
@@ -100,4 +96,20 @@
 
 .criteria {
   margin-right: 20px;
+}
+
+@media (max-width: 930px) {
+  .search-form {
+    flex-direction: column;
+    height: 6rem;
+  }
+  .search-form h2 {
+    display: none;
+  }
+  .search-input-container {
+    width: 100%;
+  }
+  .filter {
+    justify-content: center;
+  }
 }

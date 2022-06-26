@@ -13,7 +13,7 @@
   color: white;
 }
 
-.logo .text {
+.logo .description {
   margin-left: 10px;
 }
 
@@ -24,8 +24,13 @@
   }
   .header .logo {
     font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
-  .text {
-    display: none;
+  .logo .description {
+    font-size: 1rem;
+    margin-left: 0px;
   }
 }
