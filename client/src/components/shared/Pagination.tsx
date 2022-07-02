@@ -53,7 +53,6 @@ const Pagination: FC<{
   const changeLimitHandler = useCallback(
     ({ currentTarget: { value } }: FormEvent<HTMLSelectElement>) => {
       searchParams.set('limit', value);
-      searchParams.set('page', '1');
       setSearchParams(searchParams);
     },
     [searchParams, setSearchParams]

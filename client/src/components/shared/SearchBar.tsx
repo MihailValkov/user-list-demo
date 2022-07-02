@@ -29,7 +29,6 @@ const SearchBar: FC<{
       if (state.criteria) {
         searchParams.set('search', state.search);
         searchParams.set('criteria', state.criteria);
-        searchParams.set('page', '1');
         setSearchParams(searchParams);
       }
     }, 300);
