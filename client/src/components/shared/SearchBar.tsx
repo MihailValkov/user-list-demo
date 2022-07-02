@@ -16,10 +16,7 @@ const SearchBar: FC<{
   const [state, setState] = useState({ search: '', criteria: '' });
 
   const changeHandler = useCallback(
-    (
-      type: 'search' | 'criteria',
-      { currentTarget: { value } }: FormEvent<HTMLSelectElement | HTMLInputElement>
-    ) => {
+    (type: 'search' | 'criteria', { currentTarget: { value } }: FormEvent<HTMLSelectElement | HTMLInputElement>) => {
       setState((state) => ({ ...state, [type]: value }));
     },
     []
@@ -32,6 +29,7 @@ const SearchBar: FC<{
       if (state.criteria) {
         searchParams.set('search', state.search);
         searchParams.set('criteria', state.criteria);
+        searchParams.set('page', '1');
         setSearchParams(searchParams);
       }
     }, 300);
@@ -47,22 +45,12 @@ const SearchBar: FC<{
       <div className={styles['search-input-container']}>
         <input
           type='text'
-          placeholder={
-            state.criteria
-              ? `Search ${title} by ${state.criteria}`
-              : 'Please, select the search criteria'
-          }
+          placeholder={state.criteria ? `Search ${title} by ${state.criteria}` : 'Please, select the search criteria'}
           name='search'
           onChange={changeHandler.bind(null, 'search')}
           value={state.search}
         />
-        {state.search !== '' && (
-          <Button
-            icon={faClose}
-            classes={`${styles['btn']} ${styles['close-btn']}`}
-            onClick={onClear}
-          />
-        )}
+        {state.search !== '' && <Button icon={faClose} classes={`${styles['btn']} ${styles['close-btn']}`} onClick={onClear} />}
 
         <Button
           icon={faSearch}
