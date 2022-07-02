@@ -1,6 +1,6 @@
 .table-wrapper {
   position: relative;
-  height: calc(100vh - 20rem - 35px);
+  height: calc(100vh - 20rem - 45px);
   overflow-y: scroll;
   background: white;
   overflow: auto;
