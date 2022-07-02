@@ -50,11 +50,7 @@ const Table: FC<ITableInterface<IUserBase>> = ({
     noContent = (
       <div className={styles['no-content']}>
         <FontAwesomeIcon icon={faWarning} className={styles.icon} />
-        {search ? (
-          <h2>Sorry, we couldn't find what you're looking for.</h2>
-        ) : (
-          <h2>There is no {title} yet.</h2>
-        )}
+        {search ? <h2>Sorry, we couldn't find what you're looking for.</h2> : <h2>There is no {title} yet.</h2>}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 .detail-container {
   width: 100%;
-  height: 40vh;
+  height: 45vh;
 }
 
 .header {
@@ -51,7 +51,7 @@
 
 @media (min-width: 681px) and (max-width: 1000px) {
   .detail-container {
-    height: 66vh;
+    height: 68vh;
   }
   .content {
     flex-direction: column;

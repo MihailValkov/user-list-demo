@@ -1,15 +1,15 @@
 .table-wrapper {
   position: relative;
-  height: calc(100vh - 20rem - 30px);
+  height: calc(100vh - 20rem - 35px);
   overflow-y: scroll;
   background: white;
   overflow: auto;
   width: 100%;
-  margin-bottom: 5px;
 }
 
 .table {
   width: 100%;
+  border-spacing: 0px;
 }
 
 .table thead {
@@ -23,6 +23,7 @@
   background-color: #2a87a5;
   color: white;
 }
+
 .table th {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -52,12 +53,18 @@
 .table tr th,
 .table tr td {
   width: 14.28%;
+  border-right: 1px solid white;
+}
+.table tr th:first-of-type,
+.table tr td:first-of-type {
+  border-left: 1px solid white;
 }
 
 .table tbody tr {
   margin: 0px 5px;
   height: 64px;
 }
+
 .table tbody td {
   line-height: 1.5rem;
   text-align: center;
@@ -70,21 +77,19 @@
 .table td.center {
   text-align: center;
 }
+
 .table tbody {
   position: relative;
 }
 
-.table tbody tr:nth-child(1n) {
-  background: rgba(7, 6, 6, 0.3);
-  color: white;
-}
-.table tbody tr:nth-child(2n) {
+.table tbody tr {
   background: rgba(199, 198, 198, 0.3);
   color: black;
 }
 
 .table tbody tr:hover {
-  background: rgba(90, 133, 150, 0.514);
+  background: rgba(142, 140, 140, 0.8);
+  color: white;
 }
 
 .table tr.loading {
@@ -119,8 +124,11 @@
 }
 
 @media (max-width: 930px) {
+  .table-wrapper {
+    height: calc(100vh - 18rem - 30px);
+  }
   .table {
-    width: 800px;
+    width: 930px;
   }
   .table-wrapper::-webkit-scrollbar {
     height: 10px;
