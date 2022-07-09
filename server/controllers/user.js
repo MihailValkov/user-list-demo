@@ -24,7 +24,7 @@ const addUser = async (req, res) => {
 
   try {
     const createdUser = await userModel.create({ ...data, address });
-    const user = { ...data, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
+    const user = { ...data, _id:createdUser._id, createdAt: createdUser.createdAt, updatedAt: createdUser.updatedAt };
 
     res.status(200).json({ user });
   } catch (error) {
