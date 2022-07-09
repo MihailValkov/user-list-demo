@@ -38,7 +38,7 @@ To start the server, you must run the following command in your terminal:
 
 ## Base URL
 
-The Base URL for the API is: `https://localhost:3005/api`
+The Base URL for the API is: `http://localhost:3005/api`
 
 The documentation below assumes you are pre-pending the Base URL to the endpoints in order to make requests.
 
