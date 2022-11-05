@@ -9,6 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<UserList />}></Route>
+          <Route path='*' element={<UserList />}></Route>
         </Routes>
       </BrowserRouter>
     </Layout>
