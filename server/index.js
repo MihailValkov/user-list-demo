@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+global.BASE_DIR = __dirname;
 
 const db = require('./config/db');
 const { port, dbConnection } = require('./config/config');
