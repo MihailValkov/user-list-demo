@@ -30,22 +30,18 @@ const Pagination: FC<{
 
   const setNewParams = useCallback(
     (destination: 'first' | 'previous' | 'next' | 'last') => {
-      let currentPage = 1;
+      let currentPage: number;
       if (destination === 'first') {
-        searchParams.set('page', '1');
-        setSearchParams(searchParams);
+        currentPage = 1;
       } else if (destination === 'next') {
         currentPage = pageIndex + 1 >= maxPages ? maxPages : pageIndex + 1;
-        searchParams.set('page', currentPage.toString());
-        setSearchParams(searchParams);
       } else if (destination === 'previous') {
         currentPage = pageIndex - 1 < 1 ? 1 : pageIndex - 1;
-        searchParams.set('page', currentPage.toString());
-        setSearchParams(searchParams);
       } else {
-        searchParams.set('page', maxPages.toString());
-        setSearchParams(searchParams);
+        currentPage = maxPages;
       }
+      searchParams.set('page', currentPage.toString());
+      setSearchParams(searchParams);
     },
     [searchParams, setSearchParams, pageIndex, maxPages]
   );
