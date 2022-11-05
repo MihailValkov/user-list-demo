@@ -6,6 +6,9 @@
   overflow: auto;
   width: 100%;
 }
+.table-wrapper::-webkit-scrollbar {
+  display: none;
+}
 
 .table {
   width: 100%;
