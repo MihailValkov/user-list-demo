@@ -11,6 +11,7 @@ async function httpRequest<R>(method: string, url: string, body?: any): Promise<
   if (!baseURL) {
     throw new Error('REACT_APP_API_URL is missing!');
   }
+
   const options: IOptions = { method, credentials: 'include' };
 
   if (url.includes('upload')) {
@@ -21,15 +22,16 @@ async function httpRequest<R>(method: string, url: string, body?: any): Promise<
     options.body = body ? JSON.stringify(body) : null;
   }
 
-  return await fetch(`${baseURL}/${url}`, options)
-    .then(async (res) => await Promise.all([res.json(), res.ok]))
-    .then(([res, isOk]) =>
-      !isOk
-        ? (function () {
-            throw new Error(res.message);
-          })()
-        : res
-    );
+  try {
+    const response = await fetch(`${baseURL}/${url}`, options);
+    const [parsedResponse, responseIsOk] = await Promise.all([response.json(), response.ok]);
+    if (!responseIsOk) {
+      throw new Error(parsedResponse.message || 'Something went wrong!');
+    }
+    return parsedResponse;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 }
 
 export const http = {
