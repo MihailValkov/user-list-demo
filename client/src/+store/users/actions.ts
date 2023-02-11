@@ -7,11 +7,15 @@ import {
   getUser,
   deleteUser,
   addNewUser,
-  updateUser,
+  updateUser
 } from './slice';
 import { http } from '../../utils/http-request';
-import { ICreateOrUpdateUser, IUser, IUserBase } from '../../components/shared/interfaces/user';
-import { AppDispatch } from '../store';
+import {
+  type ICreateOrUpdateUser,
+  type IUser,
+  type IUserBase
+} from '../../components/shared/interfaces/user';
+import { type AppDispatch } from '../store';
 
 export const getUsersAction = (path: string) => async (dispatch: AppDispatch) => {
   dispatch(usersIsLoading({ isLoading: true }));

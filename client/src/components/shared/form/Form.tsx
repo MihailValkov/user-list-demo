@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, ReactNode } from 'react';
+import { type FC, type FormEventHandler, type ReactNode } from 'react';
 
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -9,7 +9,7 @@ const Form: FC<{
   onSubmitHandler: FormEventHandler<HTMLFormElement>;
   isLoading: boolean;
   classes?: string;
-}> = ({ children, onSubmitHandler, isLoading, classes }) => {
+}> = ({ children, onSubmitHandler, isLoading, classes = '' }) => {
   return (
     <>
       <form onSubmit={onSubmitHandler} className={`${styles.form} ${classes}`}>

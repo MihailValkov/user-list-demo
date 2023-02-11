@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { faClose } from '@fortawesome/free-solid-svg-icons';
@@ -26,23 +26,25 @@ const DetailUser: FC<{
   const updatedDate = useTransformDate(currentUser?.updatedAt || '', { dateStyle: 'full' });
 
   useEffect(() => {
-    dispatch(getUserAction(userId));
+    void dispatch(getUserAction(userId));
 
-    return () => { dispatch(clearUser()); };
+    return () => {
+      dispatch(clearUser());
+    };
   }, [dispatch, userId]);
 
   return (
     <div className={styles['detail-container']}>
-      <header className={styles['header']}>
+      <header className={styles.header}>
         <h2> User Detail</h2>
-        <Button icon={faClose} action='close' onClick={onClose} />
+        <Button icon={faClose} action="close" onClick={onClose} />
       </header>
       <div className={styles.content}>
         {isLoading && <LoadingSpinner />}
-        {!isLoading && !errorMessage && (
+        {!isLoading && !errorMessage && currentUser && (
           <>
             <div className={styles['image-container']}>
-              <img src={currentUser?.imageUrl} alt={currentUser?.firstName + '-profile'} />
+              <img src={currentUser?.imageUrl} alt={`${currentUser?.firstName}-profile`} />
             </div>
             <div className={styles['user-details']}>
               <p>

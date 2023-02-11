@@ -1,11 +1,11 @@
-import { FC, FormEvent, useCallback, useEffect } from 'react';
+import { type FC, type FormEvent, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
   faAngleLeft,
   faAngleRight,
   faAnglesLeft,
-  faAnglesRight,
+  faAnglesRight
 } from '@fortawesome/free-solid-svg-icons';
 
 import Button from './Button';
@@ -17,7 +17,7 @@ const Pagination: FC<{
   showFirstLastButtons?: boolean;
   classes?: string;
   position?: 'left' | 'right' | 'center';
-}> = ({ maxPages, pageSizeOptions, showFirstLastButtons, classes, position = 'right' }) => {
+}> = ({ maxPages, pageSizeOptions, showFirstLastButtons, classes = '', position = 'right' }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageIndex = Number(searchParams.get('page') || 1);
   const limit = searchParams.get('limit') || pageSizeOptions[0];
@@ -58,7 +58,7 @@ const Pagination: FC<{
     <div className={`${styles.pagination} ${classes} ${styles[position]}`}>
       <div className={styles.limits}>
         <span>Items per page:</span>
-        <select name='limit' className={styles.limit} value={limit} onChange={changeLimitHandler}>
+        <select name="limit" className={styles.limit} value={limit} onChange={changeLimitHandler}>
           {pageSizeOptions.map((v) => (
             <option key={v} value={v}>
               {v}
@@ -76,31 +76,27 @@ const Pagination: FC<{
             icon={faAnglesLeft}
             onClick={setNewParams.bind(null, 'first')}
             disabled={pageIndex === 1}
-            title='First Page'
-          ></Button>
+            title="First Page"></Button>
         )}
         <Button
           classes={styles.btn}
           icon={faAngleLeft}
           onClick={setNewParams.bind(null, 'previous')}
           disabled={pageIndex === 1}
-          title='Previous Page'
-        ></Button>
+          title="Previous Page"></Button>
         <Button
           classes={styles.btn}
           onClick={setNewParams.bind(null, 'next')}
           disabled={pageIndex >= maxPages}
           icon={faAngleRight}
-          title='Next Page'
-        ></Button>
+          title="Next Page"></Button>
         {showFirstLastButtons && (
           <Button
             classes={styles.btn}
             onClick={setNewParams.bind(null, 'last')}
             disabled={pageIndex >= maxPages}
             icon={faAnglesRight}
-            title='Last Page'
-          ></Button>
+            title="Last Page"></Button>
         )}
       </div>
     </div>

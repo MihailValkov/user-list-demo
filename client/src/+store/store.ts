@@ -1,11 +1,11 @@
-import { AnyAction, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { type AnyAction, configureStore, type ThunkDispatch } from '@reduxjs/toolkit';
+import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { userReducer } from './users/slice';
 
 export const store = configureStore({
   reducer: {
-    user: userReducer,
-  },
+    user: userReducer
+  }
 });
 
 /* Types */

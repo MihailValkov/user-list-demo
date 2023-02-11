@@ -1,7 +1,7 @@
-import { FC, memo, ReactNode } from 'react';
+import { type FC, memo, type ReactNode } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './FormGroup.module.css';
 
@@ -14,13 +14,12 @@ const FormGroup: FC<{
   hasError: boolean;
   isValid: boolean;
   classes?: string;
-}> = memo(({ label, name, icon, children, errorMessage, hasError, isValid, classes }) => {
+}> = ({ label, name, icon, children, errorMessage, hasError, isValid, classes = '' }) => {
   return (
     <div className={`${styles.group} ${classes}`}>
       <label htmlFor={name}>{label}</label>
       <div
-        className={`${styles.control} ${hasError ? styles.invalid : isValid ? styles.valid : ''}`}
-      >
+        className={`${styles.control} ${hasError ? styles.invalid : isValid ? styles.valid : ''}`}>
         <span>
           <FontAwesomeIcon icon={icon} className={styles.icon} />
         </span>
@@ -29,6 +28,6 @@ const FormGroup: FC<{
       <p className={styles.error}>{hasError && errorMessage}</p>
     </div>
   );
-});
+};
 
-export default FormGroup;
+export default memo(FormGroup);

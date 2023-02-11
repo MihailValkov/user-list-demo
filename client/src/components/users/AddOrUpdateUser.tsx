@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect } from 'react';
+import { type FC, type FormEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -10,14 +10,14 @@ import {
   faHome,
   faEnvelope,
   faImage,
-  faClose,
+  faClose
 } from '@fortawesome/free-solid-svg-icons';
 
 import useInput from '../../hooks/use-input';
 import * as validations from '../../utils/validations';
 import { useTypedDispatch } from '../../+store/store';
 
-import { ICreateOrUpdateUser } from '../shared/interfaces/user';
+import { type ICreateOrUpdateUser } from '../shared/interfaces/user';
 import { addNewUserAction, getUserAction, updateUserAction } from '../../+store/users/actions';
 import { clearUser } from '../../+store/users/slice';
 import * as selectors from '../../+store/users/selectors';
@@ -41,8 +41,12 @@ const AddOrUpdateUser: FC<{
   const isLoading = useSelector(selectors.selectCurrentUserIsLoading);
 
   useEffect(() => {
-    if (userId) { dispatch(getUserAction(userId)); }
-    return () => { userId && dispatch(clearUser()); };
+    if (userId) {
+      void dispatch(getUserAction(userId));
+    }
+    return () => {
+      userId && dispatch(clearUser());
+    };
   }, [dispatch, userId]);
 
   const {
@@ -52,7 +56,7 @@ const AddOrUpdateUser: FC<{
     hasError: firstNameHasError,
     blurHandler: firstNameBlurHandler,
     changeHandler: firstNameChangeHandler,
-    touched: firstNameIsTouched,
+    touched: firstNameIsTouched
   } = useInput(validations.firstNameValidation, user?.firstName);
 
   const {
@@ -62,7 +66,7 @@ const AddOrUpdateUser: FC<{
     hasError: lastNameHasError,
     blurHandler: lastNameBlurHandler,
     changeHandler: lastNameChangeHandler,
-    touched: lastNameIsTouched,
+    touched: lastNameIsTouched
   } = useInput(validations.lastNameValidation, user?.lastName);
 
   const {
@@ -72,7 +76,7 @@ const AddOrUpdateUser: FC<{
     hasError: emailHasError,
     blurHandler: emailBlurHandler,
     changeHandler: emailChangeHandler,
-    touched: emailIsTouched,
+    touched: emailIsTouched
   } = useInput(validations.emailValidation, user?.email);
 
   const {
@@ -82,7 +86,7 @@ const AddOrUpdateUser: FC<{
     hasError: phoneNumberHasError,
     blurHandler: phoneNumberBlurHandler,
     changeHandler: phoneNumberChangeHandler,
-    touched: phoneNumberIsTouched,
+    touched: phoneNumberIsTouched
   } = useInput(validations.phoneNumberValidation, user?.phoneNumber);
 
   const {
@@ -92,7 +96,7 @@ const AddOrUpdateUser: FC<{
     hasError: imageUrlHasError,
     blurHandler: imageUrlBlurHandler,
     changeHandler: imageUrlChangeHandler,
-    touched: imageUrlIsTouched,
+    touched: imageUrlIsTouched
   } = useInput(validations.imageUrlValidation, user?.imageUrl);
 
   const {
@@ -102,7 +106,7 @@ const AddOrUpdateUser: FC<{
     hasError: countryHasError,
     blurHandler: countryBlurHandler,
     changeHandler: countryChangeHandler,
-    touched: countryIsTouched,
+    touched: countryIsTouched
   } = useInput(validations.countryValidation, user?.address.country);
 
   const {
@@ -112,7 +116,7 @@ const AddOrUpdateUser: FC<{
     hasError: cityHasError,
     blurHandler: cityBlurHandler,
     changeHandler: cityChangeHandler,
-    touched: cityIsTouched,
+    touched: cityIsTouched
   } = useInput(validations.cityValidation, user?.address.city);
 
   const {
@@ -122,7 +126,7 @@ const AddOrUpdateUser: FC<{
     hasError: streetHasError,
     blurHandler: streetBlurHandler,
     changeHandler: streetChangeHandler,
-    touched: streetIsTouched,
+    touched: streetIsTouched
   } = useInput(validations.streetValidation, user?.address.street);
 
   const {
@@ -132,7 +136,7 @@ const AddOrUpdateUser: FC<{
     hasError: streetNumberHasError,
     blurHandler: streetNumberBlurHandler,
     changeHandler: streetNumberChangeHandler,
-    touched: streetNumberIsTouched,
+    touched: streetNumberIsTouched
   } = useInput(validations.streetNumberValidation, user?.address.streetNumber?.toString());
 
   const formIsValid: boolean =
@@ -159,8 +163,10 @@ const AddOrUpdateUser: FC<{
 
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!formIsValid) { return; }
-    
+    if (!formIsValid) {
+      return;
+    }
+
     const userData: ICreateOrUpdateUser = {
       firstName: firstNameValue,
       lastName: lastNameValue,
@@ -171,54 +177,52 @@ const AddOrUpdateUser: FC<{
         country: countryValue,
         city: cityValue,
         street: streetValue,
-        streetNumber: Number(streetNumberValue),
-      },
+        streetNumber: Number(streetNumberValue)
+      }
     };
 
     if (mode === 'create') {
-      dispatch(addNewUserAction(userData, onClose));
-    } else if (mode === 'update') {
-      dispatch(updateUserAction(user!._id, userData, onClose));
+      void dispatch(addNewUserAction(userData, onClose));
+    } else if (mode === 'update' && user) {
+      void dispatch(updateUserAction(user._id, userData, onClose));
     }
   };
 
   return (
     <div className={styles['user-container']}>
-      <header className={styles['header']}>
+      <header className={styles.header}>
         <h2> {mode === 'update' ? 'Edit User' : 'Add User'}</h2>
-        <Button icon={faClose} action='close' onClick={onClose} />
+        <Button icon={faClose} action="close" onClick={onClose} />
       </header>
       <Form isLoading={isLoading} onSubmitHandler={onSubmitHandler}>
         <FormRow>
           <FormGroup
-            name='firstName'
+            name="firstName"
             errorMessage={firstNameErrorMessage}
             hasError={firstNameHasError}
             isValid={firstNameIsValid}
             icon={faUser}
-            label='First name'
-          >
+            label="First name">
             <input
-              id='firstName'
-              name='firstName'
-              type='text'
+              id="firstName"
+              name="firstName"
+              type="text"
               value={firstNameValue}
               onChange={firstNameChangeHandler}
               onBlur={firstNameBlurHandler}
             />
           </FormGroup>
           <FormGroup
-            name='lastName'
+            name="lastName"
             errorMessage={lastNameErrorMessage}
             hasError={lastNameHasError}
             isValid={lastNameIsValid}
             icon={faUser}
-            label='Last name'
-          >
+            label="Last name">
             <input
-              id='lastName'
-              name='lastName'
-              type='text'
+              id="lastName"
+              name="lastName"
+              type="text"
               value={lastNameValue}
               onChange={lastNameChangeHandler}
               onBlur={lastNameBlurHandler}
@@ -227,34 +231,32 @@ const AddOrUpdateUser: FC<{
         </FormRow>
         <FormRow>
           <FormGroup
-            name='email'
+            name="email"
             errorMessage={emailErrorMessage}
             hasError={emailHasError}
             isValid={emailIsValid}
             icon={faEnvelope}
-            label='Email'
-          >
+            label="Email">
             <input
-              id='email'
-              name='email'
-              type='email'
+              id="email"
+              name="email"
+              type="email"
               value={emailValue}
               onChange={emailChangeHandler}
               onBlur={emailBlurHandler}
             />
           </FormGroup>
           <FormGroup
-            name='phoneNumber'
+            name="phoneNumber"
             errorMessage={phoneNumberErrorMessage}
             hasError={phoneNumberHasError}
             isValid={phoneNumberIsValid}
             icon={faPhone}
-            label='Phone number'
-          >
+            label="Phone number">
             <input
-              id='phoneNumber'
-              name='phoneNumber'
-              type='text'
+              id="phoneNumber"
+              name="phoneNumber"
+              type="text"
               value={phoneNumberValue}
               onChange={phoneNumberChangeHandler}
               onBlur={phoneNumberBlurHandler}
@@ -262,17 +264,16 @@ const AddOrUpdateUser: FC<{
           </FormGroup>
         </FormRow>
         <FormGroup
-          name='imageUrl'
+          name="imageUrl"
           errorMessage={imageUrlErrorMessage}
           hasError={imageUrlHasError}
           isValid={imageUrlIsValid}
           icon={faImage}
-          label='Image Url'
-        >
+          label="Image Url">
           <input
-            id='imageUrl'
-            name='imageUrl'
-            type='text'
+            id="imageUrl"
+            name="imageUrl"
+            type="text"
             value={imageUrlValue}
             onChange={imageUrlChangeHandler}
             onBlur={imageUrlBlurHandler}
@@ -280,34 +281,32 @@ const AddOrUpdateUser: FC<{
         </FormGroup>
         <FormRow>
           <FormGroup
-            name='country'
+            name="country"
             errorMessage={countryErrorMessage}
             hasError={countryHasError}
             isValid={countryIsValid}
             icon={faMapMarkedAlt}
-            label='Country'
-          >
+            label="Country">
             <input
-              id='country'
-              name='country'
-              type='text'
+              id="country"
+              name="country"
+              type="text"
               value={countryValue}
               onChange={countryChangeHandler}
               onBlur={countryBlurHandler}
             />
           </FormGroup>
           <FormGroup
-            name='city'
+            name="city"
             errorMessage={cityErrorMessage}
             hasError={cityHasError}
             isValid={cityIsValid}
             icon={faCity}
-            label='City'
-          >
+            label="City">
             <input
-              id='city'
-              name='city'
-              type='text'
+              id="city"
+              name="city"
+              type="text"
               value={cityValue}
               onChange={cityChangeHandler}
               onBlur={cityBlurHandler}
@@ -316,34 +315,32 @@ const AddOrUpdateUser: FC<{
         </FormRow>
         <FormRow>
           <FormGroup
-            name='street'
+            name="street"
             errorMessage={streetErrorMessage}
             hasError={streetHasError}
             isValid={streetIsValid}
             icon={faStreetView}
-            label='Street'
-          >
+            label="Street">
             <input
-              id='street'
-              name='street'
-              type='text'
+              id="street"
+              name="street"
+              type="text"
               value={streetValue}
               onChange={streetChangeHandler}
               onBlur={streetBlurHandler}
             />
           </FormGroup>
           <FormGroup
-            name='streetNumber'
+            name="streetNumber"
             errorMessage={streetNumberErrorMessage}
             hasError={streetNumberHasError}
             isValid={streetNumberIsValid}
             icon={faHome}
-            label='Street number'
-          >
+            label="Street number">
             <input
-              id='streetNumber'
-              name='streetNumber'
-              type='number'
+              id="streetNumber"
+              name="streetNumber"
+              type="number"
               value={streetNumberValue}
               onChange={streetNumberChangeHandler}
               onBlur={streetNumberBlurHandler}
@@ -351,14 +348,10 @@ const AddOrUpdateUser: FC<{
           </FormGroup>
         </FormRow>
         <FormActions responseError={errorMessage || ''} position={'right'}>
-          <Button
-            disabled={!formIsValid || !formIsTouched ? true : false}
-            type='submit'
-            action={'save'}
-          >
+          <Button disabled={!!(!formIsValid || !formIsTouched)} type="submit" action={'save'}>
             Save
           </Button>
-          <Button type='button' onClick={onClose} action={'cancel'}>
+          <Button type="button" onClick={onClose} action={'cancel'}>
             Cancel
           </Button>
         </FormActions>

@@ -1,7 +1,7 @@
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import styles from './Card.module.css';
 
-const Card: FC<{ children: ReactNode; classes?: string }> = ({ children, classes }) => {
+const Card: FC<{ children: ReactNode; classes?: string }> = ({ children, classes = '' }) => {
   return <section className={`${styles.card} ${classes}`}>{children}</section>;
 };
 

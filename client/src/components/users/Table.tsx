@@ -1,10 +1,10 @@
-import { FC, memo, ReactElement, useCallback } from 'react';
+import { type FC, memo, type ReactElement, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { faArrowDown, faArrowUp, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { IUserBase } from '../shared/interfaces/user';
+import { type IUserBase } from '../shared/interfaces/user';
 import LoadingSpinner from '../shared/LoadingSpinner';
 import TableItem from './TableItem';
 
@@ -12,7 +12,7 @@ import styles from './Table.module.css';
 
 interface ITableInterface<T> {
   title: string;
-  headers: { [prop: string]: string };
+  headers: Record<string, string>;
   content: T[] | null;
   isLoading: boolean;
   errorMessage: string | null;
@@ -27,11 +27,11 @@ const Table: FC<ITableInterface<IUserBase>> = ({
   isLoading,
   errorMessage,
   defaultSort,
-  defaultOrder,
+  defaultOrder
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sort = searchParams.get('sort') || defaultSort;
-  const order = searchParams.get('order') || defaultOrder;
+  const sort = searchParams.get('sort') ?? defaultSort;
+  const order = searchParams.get('order') ?? defaultOrder;
   const search = searchParams.get('search');
 
   let tableContent: ReactElement[] = [];
@@ -50,7 +50,11 @@ const Table: FC<ITableInterface<IUserBase>> = ({
     noContent = (
       <div className={styles['no-content']}>
         <FontAwesomeIcon icon={faWarning} className={styles.icon} />
-        {search ? <h2>Sorry, we couldn't find what you're looking for.</h2> : <h2>There is no {title} yet.</h2>}
+        {search ? (
+          <h2>Sorry, we couldn't find what you're looking for.</h2>
+        ) : (
+          <h2>There is no {title} yet.</h2>
+        )}
       </div>
     );
   }

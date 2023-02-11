@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { type FC, useMemo } from 'react';
 
 import styles from './Navigation.module.css';
 
@@ -10,7 +10,9 @@ const Navigation: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <span className={styles.course}>React Course - {month} {year}</span>
+        <span className={styles.course}>
+          React Course - {month} {year}
+        </span>
         <span className={styles.description}> User List Demo</span>
       </div>
     </header>

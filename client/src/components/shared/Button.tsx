@@ -1,6 +1,6 @@
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './Button.module.css';
@@ -19,12 +19,12 @@ const Button: FC<{
   children,
   onClick,
   type,
-  classes,
+  classes = '',
   disabled,
   icon,
   title,
   iconPosition = 'before',
-  action,
+  action
 }) => {
   return (
     <button
@@ -32,8 +32,7 @@ const Button: FC<{
       className={`${styles.btn} ${classes} ${action ? styles[action] : ''}`}
       disabled={disabled}
       onClick={onClick}
-      title={title}
-    >
+      title={title}>
       {iconPosition === 'before' && icon && (
         <FontAwesomeIcon icon={icon} className={children ? styles.before : ''} />
       )}

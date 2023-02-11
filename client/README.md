@@ -1,6 +1,7 @@
 # React Application - User List Demo
 
 ## 🛠 Libraries and tools used
+
 - [React](https://reactjs.org/)
 - [React Router v6](https://reactrouter.com/)
 - [Redux](https://redux.js.org/)
@@ -13,7 +14,9 @@
 - [REST API](https://github.com/MihailValkov/user-list-demo/blob/main/server/README.md)
 
 ## Getting Started
+
 Clone this repository and install dependencies
+
 ```
 > git clone https://github.com/MihailValkov/user-list-demo.git
 > cd client ( to navigate to the client folder )
@@ -25,13 +28,10 @@ Clone this repository and install dependencies
 > npm start ( to start the REST API )
 > go to http://localhost:3000
 ```
+
 **NOTE: Don't forget to read the documentation about the REST API, you can find it [here](https://github.com/MihailValkov/user-list-demo/blob/main/server/README.md).**
 
-
 ## Application Overview
+
 The application allows visitors to browse through the user's table. Each table row provides functionality to view the detailed information about the current user, edit user information, and delete the user.
 The application provides functionality to create a new user, searching for a specific user by providing the criterion and searching value, pagination, and sorting of the users in ascending or descending order.
-
-
-
-

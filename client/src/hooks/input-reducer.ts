@@ -11,18 +11,27 @@ export const initialState = {
   isValid: false,
   touched: false,
   errorMessage: '',
-  hasError: false,
+  hasError: false
 };
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case 'set_value': return { ...state, value: action.value, isValid: true };
-    case 'change': return { ...state, value: action.value, touched: true };
-    case 'blur': return { ...state, touched: true };
-    case 'error': return {
-      ...state, hasError: action.error, errorMessage: action.errorMessage, isValid: action.isValid
-    };
-    case 'reset': return initialState;
-    default: return state;
+    case 'set_value':
+      return { ...state, value: action.value, isValid: true };
+    case 'change':
+      return { ...state, value: action.value, touched: true };
+    case 'blur':
+      return { ...state, touched: true };
+    case 'error':
+      return {
+        ...state,
+        hasError: action.error,
+        errorMessage: action.errorMessage,
+        isValid: action.isValid
+      };
+    case 'reset':
+      return initialState;
+    default:
+      return state;
   }
 };

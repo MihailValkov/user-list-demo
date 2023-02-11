@@ -103,6 +103,7 @@
   .search-form {
     flex-direction: column;
     height: 6rem;
+    margin: 0px;
   }
   .search-form h2 {
     display: none;

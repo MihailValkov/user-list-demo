@@ -1,14 +1,14 @@
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 
 import styles from './FormRow.module.css';
 
 const FormRow: FC<{ children: ReactNode; classes?: string; animation?: boolean }> = ({
   children,
-  classes,
-  animation,
+  classes = '',
+  animation = false
 }) => {
   return (
-    <div className={`${styles['form-row']} ${animation && styles.animation} ${classes}`}>
+    <div className={`${styles['form-row']} ${animation ? styles.animation : ''} ${classes}`}>
       {children}
     </div>
   );

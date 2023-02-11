@@ -1,28 +1,32 @@
-import { useReducer, useCallback, useEffect, FormEvent } from 'react';
+import { useReducer, useCallback, useEffect, type FormEvent } from 'react';
 
-import { IValidationFn } from '../utils/validations';
+import { type IValidationFn } from '../utils/validations';
 import { initialState, reducer } from './input-reducer';
 
 const useInput = (validateValue: IValidationFn, defaultValue?: string | undefined) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (state.touched) {
         const { isValid, message } = validateValue(state.value);
         dispatch({
           type: 'error',
           error: !isValid && state.touched,
           errorMessage: message,
-          isValid,
+          isValid
         });
       }
     }, 300);
 
-    return () => { clearTimeout(timer); }
+    return () => {
+      clearTimeout(timer);
+    };
   }, [validateValue, state.touched, state.value]);
 
-  useEffect(() => { defaultValue && dispatch({ type: 'set_value', value: defaultValue }); }, [defaultValue]);
+  useEffect(() => {
+    defaultValue && dispatch({ type: 'set_value', value: defaultValue });
+  }, [defaultValue]);
 
   const changeHandler = useCallback(
     ({ currentTarget: { value } }: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,9 +35,13 @@ const useInput = (validateValue: IValidationFn, defaultValue?: string | undefine
     []
   );
 
-  const blurHandler = useCallback(() => { dispatch({ type: 'blur' }); }, []);
+  const blurHandler = useCallback(() => {
+    dispatch({ type: 'blur' });
+  }, []);
 
-  const resetHandler = useCallback(() => { dispatch({ type: 'reset' }); }, []);
+  const resetHandler = useCallback(() => {
+    dispatch({ type: 'reset' });
+  }, []);
 
   return {
     value: state.value,
@@ -43,7 +51,7 @@ const useInput = (validateValue: IValidationFn, defaultValue?: string | undefine
     changeHandler,
     blurHandler,
     resetHandler,
-    touched: state.touched,
+    touched: state.touched
   };
 };
 

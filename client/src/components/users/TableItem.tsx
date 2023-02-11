@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { type FC, memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { faEdit, faTrash, faInfo } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import { useTypedDispatch } from '../../+store/store';
 import { deleteUserAction } from '../../+store/users/actions';
 import { userErrorMessage } from '../../+store/users/slice';
 import * as selectors from '../../+store/users/selectors';
-import { IUserBase } from '../shared/interfaces/user';
+import { type IUserBase } from '../shared/interfaces/user';
 
 import AddOrUpdateUser from './AddOrUpdateUser';
 import Button from '../shared/Button';
@@ -19,7 +19,7 @@ import DetailUser from './DetailUser';
 import styles from './TableItem.module.css';
 
 interface ITableItem {
-  headers: { [prop: string]: string };
+  headers: Record<string, string>;
   currentUser: IUserBase;
 }
 
@@ -32,12 +32,19 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
-  const onShowEditModalHandler = useCallback(() => setShowEditModal((prev) => !prev), []);
-  const onShowDeleteModalHandler = useCallback(() => setShowDeleteModal((prev) => !prev), []);
-  const onShowDetailModalHandler = useCallback(() => setShowDetailModal((prev) => !prev), []);
+  const onShowEditModalHandler = useCallback(() => {
+    setShowEditModal((prev) => !prev);
+  }, []);
+  const onShowDeleteModalHandler = useCallback(() => {
+    setShowDeleteModal((prev) => !prev);
+  }, []);
+  const onShowDetailModalHandler = useCallback(() => {
+    setShowDetailModal((prev) => !prev);
+  }, []);
 
-  const deleteUserHandler = useCallback((userId: string) => {
-      dispatch(deleteUserAction(userId, onShowDeleteModalHandler));
+  const deleteUserHandler = useCallback(
+    (userId: string) => {
+      void dispatch(deleteUserAction(userId, onShowDeleteModalHandler));
     },
     [dispatch, onShowDeleteModalHandler]
   );
@@ -53,7 +60,7 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
           <AddOrUpdateUser
             onClose={onShowEditModalHandler}
             userId={currentUser._id}
-            mode='update'
+            mode="update"
           />
         </Modal>
       )}
@@ -85,7 +92,7 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
       <tr key={currentUser._id}>
         {Object.keys(headers).map((key: string, i: number) =>
           currentUser.hasOwnProperty(key) ? (
-            <td key={`${key}` + i}>
+            <td key={`${key} + ${i}`}>
               {key === 'imageUrl' ? (
                 <img
                   src={currentUser[key]}
@@ -103,20 +110,20 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
         <td className={styles.actions}>
           <Button
             icon={faEdit}
-            classes={`${styles['btn']} ${styles['edit-btn']}`}
-            title='Edit'
+            classes={`${styles.btn} ${styles['edit-btn']}`}
+            title="Edit"
             onClick={onShowEditModalHandler}
           />
           <Button
             icon={faTrash}
-            classes={`${styles['btn']} ${styles['delete-btn']}`}
-            title='Delete'
+            classes={`${styles.btn} ${styles['delete-btn']}`}
+            title="Delete"
             onClick={onShowDeleteModalHandler}
           />
           <Button
             icon={faInfo}
-            classes={`${styles['btn']} ${styles['info-btn']}`}
-            title='Info'
+            classes={`${styles.btn} ${styles['info-btn']}`}
+            title="Info"
             onClick={onShowDetailModalHandler}
           />
         </td>
