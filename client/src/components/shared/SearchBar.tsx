@@ -13,7 +13,7 @@ const SearchBar: FC<{
   criterion: Array<{ value: string; text: string }>;
 }> = ({ title, icon, criterion }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [state, setState] = useState({ search: '', criteria: '' });
+  const [state, setState] = useState({ search: '', criteria: criterion[0].value });
 
   const changeHandler = useCallback(
     (
@@ -25,17 +25,13 @@ const SearchBar: FC<{
     []
   );
 
-  const onClear = useCallback(() => {
-    setState((state) => ({ ...state, search: '' }));
-  }, []);
+  const onClear = useCallback(() => setState((state) => ({ ...state, search: '' })), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (state.criteria) {
-        searchParams.set('search', state.search);
-        searchParams.set('criteria', state.criteria);
-        setSearchParams(searchParams);
-      }
+      searchParams.set('search', state.search.trim());
+      searchParams.set('criteria', state.criteria);
+      setSearchParams(searchParams);
     }, 300);
     return () => {
       clearTimeout(timer);
@@ -51,11 +47,7 @@ const SearchBar: FC<{
       <div className={styles['search-input-container']}>
         <input
           type="text"
-          placeholder={
-            state.criteria
-              ? `Search ${title} by ${state.criteria}`
-              : 'Please, select the search criteria'
-          }
+          placeholder={`Search ${title} by ${state.criteria}`}
           name="search"
           onChange={changeHandler.bind(null, 'search')}
           value={state.search}
@@ -68,12 +60,7 @@ const SearchBar: FC<{
           />
         )}
 
-        <Button
-          icon={faSearch}
-          classes={styles.btn}
-          disabled={state.criteria === ''}
-          title={state.criteria === '' ? 'Please, select the search criteria' : ''}
-        />
+        <Button icon={faSearch} classes={styles.btn} />
       </div>
 
       <div className={styles.filter}>
@@ -83,7 +70,6 @@ const SearchBar: FC<{
           className={styles.criteria}
           value={state.criteria}
           onChange={changeHandler.bind(null, 'criteria')}>
-          <option value={''}>Not selected</option>
           {criterion.map((c) => (
             <option key={c.value} value={c.value}>
               {c.text}
