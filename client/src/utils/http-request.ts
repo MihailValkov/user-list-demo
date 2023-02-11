@@ -24,11 +24,11 @@ async function httpRequest<R>(method: string, url: string, body?: any): Promise<
 
   try {
     const response = await fetch(`${baseURL}/${url}`, options);
-    const [parsedResponse, responseIsOk] = await Promise.all([response.json(), response.ok]);
-    if (!responseIsOk) {
-      throw new Error(parsedResponse.message || 'Something went wrong!');
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message || 'Something went wrong!');
     }
-    return parsedResponse;
+    return result;
   } catch (error: any) {
     throw new Error(error.message);
   }
