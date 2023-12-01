@@ -3,7 +3,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 interface IOptions {
   method: string;
   body?: any;
-  headers?: HeadersInit | undefined;
+  headers: { [prop: string]: string };
   credentials?: 'omit' | 'same-origin' | 'include';
 }
 
@@ -12,12 +12,11 @@ async function httpRequest<R>(method: string, url: string, body?: any): Promise<
     throw new Error('REACT_APP_API_URL is missing!');
   }
 
-  const options: IOptions = { method, credentials: 'include' };
+  const options: IOptions = { method, credentials: 'include', headers: {} };
 
   if (url.includes('upload')) {
     options.body = body;
   } else {
-    options.headers = {};
     options.headers['Content-type'] = 'application/json';
     options.body = body ? JSON.stringify(body) : null;
   }
