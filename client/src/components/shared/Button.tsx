@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import { memo, type FC, type ReactNode } from 'react';
 
 import { type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,4 +44,4 @@ const Button: FC<{
   );
 };
 
-export default Button;
+export default memo(Button);

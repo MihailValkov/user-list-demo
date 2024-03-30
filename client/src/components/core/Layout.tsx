@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import { memo, type FC, type ReactNode } from 'react';
 
 import Footer from './Footer';
 import Navigation from './Navigation';
@@ -15,4 +15,4 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default memo(Layout);

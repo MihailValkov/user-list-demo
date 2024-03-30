@@ -1,4 +1,4 @@
-import { type FC, type FormEvent, useCallback, useEffect, useState } from 'react';
+import { type FC, type FormEvent, useCallback, useEffect, useState, memo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { faClose, faSearch, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -81,4 +81,4 @@ const SearchBar: FC<{
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

@@ -1,4 +1,4 @@
-import { type FC, type FormEvent, useCallback, useEffect } from 'react';
+import { type FC, type FormEvent, useCallback, useEffect, memo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -103,4 +103,4 @@ const Pagination: FC<{
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

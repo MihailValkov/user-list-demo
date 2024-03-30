@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { type FC, useEffect, memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { faClose } from '@fortawesome/free-solid-svg-icons';
@@ -84,4 +84,4 @@ const DetailUser: FC<{
   );
 };
 
-export default DetailUser;
+export default memo(DetailUser);

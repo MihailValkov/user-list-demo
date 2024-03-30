@@ -1,4 +1,4 @@
-import { type FC, type FormEvent, useEffect } from 'react';
+import { type FC, type FormEvent, useEffect, useCallback, memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -161,7 +161,7 @@ const AddOrUpdateUser: FC<{
     streetIsTouched ||
     streetNumberIsTouched;
 
-  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!formIsValid) {
       return;
@@ -186,7 +186,7 @@ const AddOrUpdateUser: FC<{
     } else if (mode === 'update' && user) {
       void dispatch(updateUserAction(user._id, userData, onClose));
     }
-  };
+  }, []);
 
   return (
     <div className={styles['user-container']}>
@@ -360,4 +360,4 @@ const AddOrUpdateUser: FC<{
   );
 };
 
-export default AddOrUpdateUser;
+export default memo(AddOrUpdateUser);

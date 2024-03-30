@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { memo, type FC } from 'react';
 
 import styles from './LoadingSpinner.module.css';
 
@@ -10,4 +10,4 @@ const LoadingSpinner: FC<{ className?: string }> = ({ className = '' }) => {
   );
 };
 
-export default LoadingSpinner;
+export default memo(LoadingSpinner);

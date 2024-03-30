@@ -3,7 +3,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 interface IOptions {
   method: string;
   body?: any;
-  headers: { [prop: string]: string };
+  headers: Record<string, string>;
   credentials?: 'omit' | 'same-origin' | 'include';
 }
 

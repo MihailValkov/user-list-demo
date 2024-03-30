@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { type FC, useEffect, memo } from 'react';
 
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
@@ -42,4 +42,4 @@ const DeleteUser: FC<{
   );
 };
 
-export default DeleteUser;
+export default memo(DeleteUser);

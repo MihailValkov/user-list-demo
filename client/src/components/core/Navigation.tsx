@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react';
+import { type FC, useMemo, memo } from 'react';
 
 import styles from './Navigation.module.css';
 
@@ -19,4 +19,4 @@ const Navigation: FC = () => {
   );
 };
 
-export default Navigation;
+export default memo(Navigation);

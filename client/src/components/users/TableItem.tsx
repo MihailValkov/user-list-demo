@@ -32,6 +32,7 @@ const TableItem: FC<ITableItem> = ({ headers, currentUser }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
+
   const onShowEditModalHandler = useCallback(() => {
     setShowEditModal((prev) => !prev);
   }, []);

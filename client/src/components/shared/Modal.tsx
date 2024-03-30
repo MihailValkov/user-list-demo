@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import { memo, type FC, type ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 import styles from './Modal.module.css';
@@ -32,4 +32,4 @@ const Modal: FC<{ children: ReactNode; onClose: () => void; classes?: string }> 
   );
 };
 
-export default Modal;
+export default memo(Modal);

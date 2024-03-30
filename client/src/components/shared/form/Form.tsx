@@ -1,4 +1,4 @@
-import { type FC, type FormEventHandler, type ReactNode } from 'react';
+import { memo, type FC, type FormEventHandler, type ReactNode } from 'react';
 
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -20,4 +20,4 @@ const Form: FC<{
   );
 };
 
-export default Form;
+export default memo(Form);

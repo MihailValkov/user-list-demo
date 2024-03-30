@@ -1,4 +1,4 @@
-import { type FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { type FC, useCallback, useEffect, useMemo, useState, memo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -116,4 +116,4 @@ const UsersList: FC = () => {
   );
 };
 
-export default UsersList;
+export default memo(UsersList);

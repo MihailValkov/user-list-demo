@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import { memo, type FC, type ReactNode } from 'react';
 
 import styles from './FormRow.module.css';
 
@@ -14,4 +14,4 @@ const FormRow: FC<{ children: ReactNode; classes?: string; animation?: boolean }
   );
 };
 
-export default FormRow;
+export default memo(FormRow);
